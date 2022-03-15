@@ -1,0 +1,119 @@
+CREATE TABLE state_division(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+city VARCHAR(50) NOT NULL
+);
+
+INSERT INTO state_division(city)
+VALUES ("yangon"),
+("mandalay"),
+("bago");
+
+
+
+
+CREATE TABLE townships(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50),
+state_division_id INT,
+FOREIGN KEY(state_division_id) REFERENCES state_division(id)
+);
+
+INSERT INTO townships(name,state_division_id)
+VALUES("thingangyun",1),
+("chan mya thar zi",2),
+("south okkalapa",1),
+("amarapura",2),
+("nyaung le bin",3),
+("thanatpin",3),
+("mayangone",1);
+
+
+
+
+CREATE TABLE customers(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(255) NOT NULL,
+email VARCHAR(100) NOT NULL,
+phone INT NOT NULL,
+address VARCHAR(255) NOT NULL,
+township_id INT,
+FOREIGN KEY(township_id) REFERENCES townships(id)
+);
+
+INSERT INTO customers(name,email,phone,address,township_id)
+VALUES ("kyaw gyi","kyawkyaw@gmail.com",09123456789,"no.12,48 street,south okklalapa",3),
+("su myat","sumyat@gmail.com",09987654321,"no.231,a naw mar street,mayangone",7),
+("aung aung","aungaung@gmail.com",09567438912,"no.110,min thu kha street,thanatpin",6),
+("kaung htet","kaunghtet@gmail.com",09789321465,"no.76,67 street,chan mya thar zi",2);
+
+
+
+
+CREATE TABLE product_types(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+type VARCHAR(100) NOT NULL
+);
+
+INSERT INTO product_types(type)
+VALUES("electronic"),
+("furniture"),
+("mobile"),
+("laptop");
+
+
+
+
+
+
+CREATE TABLE shops(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+product_type_id INT NOT NULL,
+phone INT NOT NULL,
+township_id INT,
+FOREIGN KEY(product_type_id) REFERENCES product_types(id),
+FOREIGN KEY(township_id) REFERENCES townships(id)
+);
+
+INSERT INTO shops(name,product_type_id,phone,township_id)
+VALUES("apple guru",3,09335688204,7),
+("unique",4,09886451795,4),
+("kyaw",1,097643452341,3),
+("remax",1,099987645673,2);
+
+
+
+
+
+CREATE TABLE orders(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+product_name VARCHAR(100) NOT NULL,
+product_type_id INT NOT NULL,
+customer_id INT NOT NULL,
+shop_id INT NOT NULL,
+order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY(product_type_id) REFERENCES product_types(id),
+FOREIGN KEY(customer_id) REFERENCES customers(id),
+FOREIGN KEY(shop_id) REFERENCES shops(id)
+);
+
+INSERT INTO orders(product_name,product_type_id,customer_id,shop_id)
+VALUES("lenovo thinkpad e560",4,1,2),
+("samsung tv",1,3,3),
+("iphone 13 pro max",3,4,1);
+
+
+
+
+
+CREATE TABLE reviews(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+message VARCHAR(255) NOT NULL,
+customer_id INT NOT NULL,
+shop_id INT NOT NULL,
+posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+INSERT INTO reviews(message,customer_id,shop_id)
+VALUES ("a yann a sin pyay dl",1,2),
+("service kaung dl",4,1);

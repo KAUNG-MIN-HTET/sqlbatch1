@@ -1,0 +1,42 @@
+{resultပေါ်မှာပဲအစားထိုးတာ}
+
+=>REPLACE ( Replace parts of strings )
+
+REPLACE Syntax = REPLACE(value,old,new)
+
+SELECT REPLACE('Hello World','Hell','Zer');
+
+
+______________________________________________
+
+SELECT REPLACE('Tin Htut Aung','Aung','Maung');
+
+{case sensitivityဖြစ်တယ်}
+*no action
+SELECT REPLACE('Hello World','hell','Zer');
+
+*no action
+SELECT REPLACE('Hello World','hello','Zer');
+
+
+SELECT REPLACE('Hello World','o','0');
+
+SELECT REPLACE('Hello World','o','A');
+
+*no action
+SELECT REPLACE('Hello World','0','A');
+
+
+*Case Sensitive
+SELECT REPLACE('Hello World','O','*');
+
+SELECT REPLACE('Hello World','l','7');
+
+
+SELECT REPLACE('cheese bread coffee milk',' ',' and ');
+
+______________________________________________
+
+
+=>REPLACE() with SUBSTRING()/SUBSTR() and CONCAT
+

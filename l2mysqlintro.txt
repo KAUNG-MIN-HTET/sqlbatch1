@@ -1,0 +1,80 @@
+
+=>VERSION CHECK
+(METHOD 1 = in server)
+mysql -V
+(METHOD 2 = in mysql)
+help; (shortcut = \h )
+status; (shortcut = \s);
+
+
+______________________________________________________
+
+=>Arithmetic Operators (5types)
+
+Operator               Meaning									Operates On
++ (Add)				    Addition								Numberic Values
+- (Subtract)			Subtraction								Numberic Values
+* (Multiply)			Multiplication							Numberic Values
+/ (Divide)				division								Numberic Values
+% (Modulus)				Returns remainder of a division			Numberic Values
+
+
+
+Addition Operator = Syntax
+
+SELECT 10 + 2; (js lo tnn poung lo ma ya pr)(mysql mr capital letter dwy nk pl yay {mysql codeနဲ့ information ခွဲလို့ရအောင်})
+
+SELECT '10' + 2; {NUMBER တွေကို '' "" `` တွေ ထဲထည့်လို့ရတယ်/js လိုမဟုတ်ပါ}
+
+SELECT '10' + '2';
+
+SELECT 10+2,20 + 30;
+
+SELECT '100' + '200','300' + '400';
+
+
+Subtraction Operator = Syntax
+
+SELECT 10 - 2;
+SELECT 20-10, 30 - 15;
+SELECT '1000'-'500', '500' - '700';
+
+
+Multiplication Operator = Syntax
+
+SELECT 10 * 2;
+SELECT 5*3, 15 * 5;
+SELECT 20 * '3', '100' * 5;
+
+
+Division Operator and DIV = Syntax
+
+SELECT 10 / 2;
+SELECT 2/3 , 3/5;
+SELECT 100 / '25'. '2000' / 2 , 12 / 0;
+
+SELECT 20 / 3;
+SELECT 20 DIV 3;{DIV နဲ့စားရင်ရှေ့ကကိန်းပြည့်ကိုပဲယူတယ်, နောက်က . တွေကိုမယူဘူး}{ကိန်းကိုပြတ်အောင်မစားနိုင်တော့ရင်ကိန်းပြည့်နဲ့ပဲယူတယ်}
+SELECT 5 DIV 2, -40 DIV 3 , -100 DIV 7;
+SELECT 5DIV2;{DIV က KEY WORD{CODE} ဖြစ်နေလို့ ကပ်ရေးလို့မရပါ. ERROR တတ်မယ်}
+SELECT 5 DIV 2,20/5;
+SELECT 5 DIV 2,-20/5;
+
+
+Modulus Operator = Syntax
+
+SELECT 10 % 3;
+SELECT 2%3 ,3 %  5;
+SELECT 20 % '3', '100' % 5;
+
+SELECT 10 % 3,
+SELECT 10 MOD 3;{ MOD = KEY WORD}
+SELECT '2345'%23;
+SELECT '2345' MOD 23;
+SELECT 7055 , 10 % 3;
+SELECT 70 MOD 5, MOD(10,3);{DIV ကိုဒီမှာလို DIV(10,3) လို့ရေးလို့မရပါ}
+
+
+
+
+

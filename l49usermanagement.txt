@@ -1,0 +1,30 @@
+=>Comments
+
+(i)Single Line Comment
+#comment here (Space or Without space is OK)
+-- comment here (Space needed)
+/* comment here */
+
+(ii)Multi Line Comments
+/*
+
+	multi comment one
+	multi comment two
+
+*/
+
+
+SELECT (1+1); #comment here
+SELECT (1+1); # comment here
+SELECT (1+1); -- comment here
+SELECT (1+1); /*comment here*/
+SELECT (1+1); /* comment here */
+
+___________________________________________________
+
+=>Create User
+
+=Syntax :
+CREATE USER username IDENTIFIED BY 'password';
+
+CREATE USER 

@@ -1,0 +1,71 @@
+SERVER LOGIN
+
+
+CMD
+
+username = ssh dlt@dltmyanmar.com
+password = datalandtechnology
+
+username = ssh dlt@157.230.240.154
+password = datalandtechnology
+
+username = ssh dlt@dltmyanmar.net
+password = datalandtechnology
+
+username = ssh dlt@137.184.248.101
+password = datalandtechnology
+
+
+Putty
+
+Host Name = dltmyanmar.com
+Host Name = 157.230.240.154
+Host Name = 137.184.248.101
+
+Login as : dlt
+Password : datalandtechnology
+
+(putty nk win yin small letter nk yay e.g wdf5298)
+(server htl win yin small letter)
+(database so a kyee)
+
+
+WINSCP	
+
+Host Name = dltmyanmar.com
+username = dlt
+password = datalandtechnology
+
+Host Name = 157.230.240.154
+username = dlt
+password = datalandtechnology
+
+
+
+COMMEND Menu > open Putty
+
+Login as : dlt
+Password : datalandtechnology
+
+
+
+
+
+
+
+DATABASE LOGIN
+
+(Method 1)
+mysql -WDF5298 -p
+datalandtechnology
+
+(Method 2)
+mysql -u WDF5298 -p
+
+
+exit
+_______________________________________________
+
+
+
+*commend line တိုင်းမှာ ( ; )ထည့်ရမယ်
