@@ -221,5 +221,123 @@ SELECT * FROM borrowercreators;
 
 ________________
 
-INSERT INTO borrowers(username,password,age)
-VALUES('nawnaw',MD5(SHA1(12345)));
+CREATE TABLE IF NOT EXISTS reminders(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	borrower_id INT,
+	message VARCHAR(255) NOT NULL
+);
+
+DESC reminders;
+
+DELIMITER //
+
+CREATE TRIGGER borroweragereminder_afc
+AFTER INSERT
+ON borrowers FOR EACH ROW
+BEGIN
+	IF NEW.age IS NULL THEN
+		INSERT INTO reminders(borrower_id,message)
+		VALUE(NEW.id,CONCAT("Dear ",NEW.username,", please update your age"));
+	END IF;
+END; // {ကပ်ရေးလဲရ ခွာရေးလဲရ}
+
+DELIMITER ;
+
+SELECT * FROM borrowers;
+SELECT * FROM borrowercreators;
+SELECT * FROM reminders;
+
+
+INSERT INTO borrowers(username,password)
+VAUES('thura',MD5(SHA1(12345)));
+
+SELECT * FROM borrowers;
+SELECT * FROM borrowercreators;
+SELECT * FROM reminders;
+
+INSERT INTO borrowers(username,password)
+VAUES('myomyo',MD5(SHA1(12345)),14);
+
+SELECT * FROM borrowers;
+SELECT * FROM borrowercreators;
+SELECT * FROM reminders;
+
+INSERT INTO borrowers(username,password)
+VAUES('naungnaung',MD5(SHA1(12345)));
+
+SELECT * FROM borrowers;
+SELECT * FROM borrowercreators;
+SELECT * FROM reminders;
+
+_____________________________________________
+
+=>BEFORE UPDATE
+
+DELIMITER ||
+
+CREATE TRIGGER borrowerage_bfu
+BEFORE UPDATE
+ON borrowers FOR EACH ROW
+BEGIN
+	DECLARE errmessage VARCHAR(255);
+	SET errmessage = CONCAT('The old age is',OLD.age,'. Sorry, we cannot provide to change');
+
+	IF OLD.age IS NOT NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errmessage;
+	ELSE
+		IF NEW.age < 18 THEN SET NEW.status = 2;
+		ELSEIF NEW.age > 45 THEN SET NEW.status = 3;
+	END IF;
+END; ||
+
+DELIMITER ;
+
+SELECT * FROM borrowers
+SELECT * FROM borrowrcreators;
+SELECT * FROM reminders;
+
+*error with message 45000
+UPDATE borrowers SET age=40 WHERE id = 1;
+
+UPDATE borrowers SET age=30 WHERE id = 15;
+
+UPDATE borrowers SET age=15 WHERE id = 17;
+
+UPDATE borrowers SET age=50 WHERE id = 14;
+
+SELECT * FROM borrowers
+SELECT * FROM borrowrcreators;
+SELECT * FROM reminders;
+
+INSERT INTO borrowrs(username,password)
+VAUES('thiri',MD5(SHA1(12345))),
+('kyalsin',MD5(SHA1(12345))),
+('kotha',MD5(SHA1(12345)));
+
+_____________________________________________
+
+=>BEFORE UPDATE
+
+DELIMITER $$
+
+CREATE TRIGGER borrowerreminder_afu
+AFTER UPDATE
+ON borrowrs FOR EACH ROW
+BEGIN
+	DELETE FROM reminders WHERE borrower_id = NEW.id;
+END;$$
+
+DELIMTER ;
+
+*error with message 45000
+UPDATE borrowers SET age = 40 WHERE id = 2;
+
+UPDATE borrowers SET age = 30 WHERE id = 18;
+UPDATE borrowers SET age = 15 WHERE id = 19;
+UPDATE borrowers SET age = 50 WHERE id = 20;
+
+SELECT * FROM borrowers
+SELECT * FROM borrowrcreators;
+SELECT * FROM reminders;
+
+_____________________________________________
